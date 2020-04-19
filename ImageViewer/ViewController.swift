@@ -12,21 +12,27 @@ func uninitialized<T>() -> T { fatalError() }
 
 class ViewController: UIViewController {
     
-    lazy var vc: ImageViewerController = uninitialized()
-
+    @IBOutlet weak var startIndexLabel: UILabel!
+    @IBOutlet weak var lastIndexLabel: UILabel!
+    
+    private let imageURLs: [URL] = [
+        getRandomImageURL(),
+        getRandomImageURL(),
+        getRandomImageURL(),
+        getRandomImageURL(),
+        getRandomImageURL()
+    ]
+    private var startIndex: Int = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        vc = ImageViewerController.init(
-            imageURLs: [
-                getRandomImageURL(),
-                getRandomImageURL(),
-                getRandomImageURL(),
-                getRandomImageURL()
-            ],
-            pageIndex: 2
-        )
         
-        view.addSubview(vc.view)
-        vc.view.fill(in: view)
+        startIndex = Int.random(in: 0..<imageURLs.count)
+        startIndexLabel.text = "initial page's gonna be \(startIndex)"
+    }
+    
+    @IBAction func showImageViewer(_ sender: UIButton) {
+        let vc = ImageViewerController.init(imageURLs: imageURLs, pageIndex: startIndex)
+        present(vc, animated: true)
     }
 }

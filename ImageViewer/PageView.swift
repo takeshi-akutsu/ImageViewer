@@ -36,7 +36,7 @@ final class PageView: UIScrollView {
         
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL) { [weak self] _ in
-            self?.layoutImageView()
+            self?.layoutImageViewIfNeeded()
             self?.pageViewDelegate?.pageViewDidLoadImage()
         }
         
@@ -45,6 +45,11 @@ final class PageView: UIScrollView {
         maximumZoomScale = 2.0
         minimumZoomScale = 1.0
         addGestureRecognizer(doubleTapGestureRecognizer)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layoutImageViewIfNeeded()
     }
 
     required init?(coder: NSCoder) {
@@ -59,7 +64,12 @@ extension PageView {
         case zoomIn
     }
     
-    private func layoutImageView() {
+    /*
+    memo: 画像読み込みとlayoutSubviewsが終了後にImageViewのlayoutを整えないといけない。
+    画像の読み込みが先に終わる時もあれば、layoutSubviewsの方が先に終わる場合もあるので、2箇所でこれを呼び出している
+    */
+    private func layoutImageViewIfNeeded() {
+        guard imageView.frame == .zero else { return }
         if let imageSize = imageView.image?.size {
             let wrate = frame.width / imageSize.width
             let hrate = frame.height / imageSize.height

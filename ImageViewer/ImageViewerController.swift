@@ -32,11 +32,12 @@ class ImageViewerController: UIViewController {
     }()
 
     private var pageIndex: Int
-    private var pageViews: [PageView]
+    private let imageURLs: [URL]
+    private var pageViews: [PageView] = []
 
     init(imageURLs: [URL], pageIndex: Int = 0) {
         self.pageIndex = pageIndex
-        self.pageViews = imageURLs.map { PageView.init(imageURL: $0) }
+        self.imageURLs = imageURLs
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -48,9 +49,11 @@ class ImageViewerController: UIViewController {
         super.viewDidLoad()
         view.addSubview(backgroundImageView)
         view.addSubview(scrollView)
-        pageViews.forEach { [weak self] pageView in
-            self?.scrollView.addSubview(pageView)
+        imageURLs.forEach { [weak self] url in
+            let pageView = PageView.init(imageURL: url)
             pageView.pageViewDelegate = self
+            self?.scrollView.addSubview(pageView)
+            self?.pageViews.append(pageView)
         }
     }
 
@@ -64,11 +67,9 @@ class ImageViewerController: UIViewController {
             view.frame.origin.x += self.scrollView.frame.width * CGFloat(index)
         }
         scrollView.contentSize.width = CGFloat(pageViews.count) * scrollView.frame.width
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
+        // MEMO: 画像取得処理が早く終わりすぎた時は、pageViewDidLoadImage()が呼ばれないのでこれを追加している
+        backgroundImageView.image = pageViews[pageIndex].imageView.image
     }
 }
 
