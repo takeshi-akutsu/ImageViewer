@@ -31,16 +31,12 @@ class ImageViewerController: UIViewController {
         return imageView
     }()
 
-    private var images: [UIImage]
-    private var pageIndex: Int = 0 {
-        didSet {
-            backgroundImageView.image = images[pageIndex]
-        }
-    }
+    private var pageIndex: Int
+    private var pageViews: [PageView]
 
-    init(images: [UIImage], pageIndex: Int = 0) {
-        self.images = images
+    init(imageURLs: [URL], pageIndex: Int = 0) {
         self.pageIndex = pageIndex
+        self.pageViews = imageURLs.map { PageView.init(imageURL: $0) }
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -52,45 +48,43 @@ class ImageViewerController: UIViewController {
         super.viewDidLoad()
         view.addSubview(backgroundImageView)
         view.addSubview(scrollView)
+        pageViews.forEach { [weak self] pageView in
+            self?.scrollView.addSubview(pageView)
+            pageView.pageViewDelegate = self
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // setup layout
         scrollView.frame = view.bounds
         backgroundImageView.frame = view.bounds
+        pageViews.enumerated().forEach { [unowned self] index, view in
+            view.frame = self.scrollView.bounds
+            view.frame.origin.x += self.scrollView.frame.width * CGFloat(index)
+        }
+        scrollView.contentSize.width = CGFloat(pageViews.count) * scrollView.frame.width
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        // TODO: 非同期処理を絡める
-        setPages(images)
         scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
-        backgroundImageView.image = images[pageIndex]
-    }
-}
-
-extension ImageViewerController {
-    private func setPages(_ images: [UIImage]) {
-        images.enumerated().forEach { [weak self] index, image in
-            let pageView = PageView(image: image)
-            pageView.pageViewDelegate = self
-            pageView.frame = scrollView.bounds
-            pageView.frame.origin.x += scrollView.frame.width * CGFloat(index)
-            self?.scrollView.addSubview(pageView)
-        }
-        
-        scrollView.contentSize.width = CGFloat(images.count) * scrollView.frame.width
     }
 }
 
 extension ImageViewerController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+        backgroundImageView.image = pageViews[pageIndex].imageView.image
     }
 }
 
 extension ImageViewerController: PageViewDelegate {
     func pageViewStatusDidChanged(_ status: PageView.Status) {
         scrollView.isScrollEnabled = (status == .normal)
+    }
+    
+    func pageViewDidLoadImage() {
+        backgroundImageView.image = pageViews[pageIndex].imageView.image
     }
 }

@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol PageViewDelegate: class {
     func pageViewStatusDidChanged(_ status: PageView.Status)
+    func pageViewDidLoadImage()
 }
 
 final class PageView: UIScrollView {
-    private lazy var imageView: UIImageView = { [unowned self] in
+    lazy var imageView: UIImageView = { [unowned self] in
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = true
@@ -28,10 +30,15 @@ final class PageView: UIScrollView {
     
     weak var pageViewDelegate: PageViewDelegate?
     
-    init(image: UIImage) {
+    init(imageURL: URL) {
         super.init(frame: .zero)
         addSubview(imageView)
-        imageView.image = image
+        
+        imageView.kf.indicatorType = .activity
+        imageView.kf.setImage(with: imageURL) { [weak self] _ in
+            self?.layoutImageView()
+            self?.pageViewDelegate?.pageViewDidLoadImage()
+        }
         
         // initialize scrollView
         self.delegate = self
@@ -40,19 +47,6 @@ final class PageView: UIScrollView {
         addGestureRecognizer(doubleTapGestureRecognizer)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        // Viewのinitialize時にimageViewのframeを設定する
-        if imageView.frame == .zero, let imageSize = imageView.image?.size {
-            let wrate = frame.width / imageSize.width
-            let hrate = frame.height / imageSize.height
-            let scale = min(wrate, hrate, 1)
-            imageView.frame.size = .init(width: imageSize.width * scale, height: imageSize.height * scale)
-            
-            contentSize = imageView.frame.size
-            adjustContentInset()
-        }
-    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -63,6 +57,18 @@ extension PageView {
     enum Status {
         case normal
         case zoomIn
+    }
+    
+    private func layoutImageView() {
+        if let imageSize = imageView.image?.size {
+            let wrate = frame.width / imageSize.width
+            let hrate = frame.height / imageSize.height
+            let scale = min(wrate, hrate)
+            imageView.frame.size = .init(width: imageSize.width * scale, height: imageSize.height * scale)
+            
+            contentSize = imageView.frame.size
+            adjustContentInset()
+        }
     }
     
     // MARK: centering the imageView

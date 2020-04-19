@@ -16,14 +16,17 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vc = ImageViewerController.init(images: images, pageIndex: 2)
+        vc = ImageViewerController.init(
+            imageURLs: [
+                getRandomImageURL(),
+                getRandomImageURL(),
+                getRandomImageURL(),
+                getRandomImageURL()
+            ],
+            pageIndex: 2
+        )
+        
         view.addSubview(vc.view)
         vc.view.fill(in: view)
     }
 }
-
-private let images: [UIImage] = [
-    UIImage.init(named: "sample")!,
-    UIImage.init(named: "sample2")!,
-    UIImage.init(named: "sample")!,
-]
