@@ -34,6 +34,11 @@ class ImageViewerController: UIViewController {
         imageView.addSubview(effectView)
         return imageView
     }()
+    
+    private lazy var pageControl: UIPageControl = { [unowned self] in
+        let pageControl = UIPageControl()
+        return pageControl
+    }()
 
     private var pageIndex: Int
     private let imageURLs: [URL]
@@ -60,6 +65,7 @@ class ImageViewerController: UIViewController {
             self?.scrollView.addSubview(pageView)
             self?.pageViews.append(pageView)
         }
+        view.addSubview(pageControl)
     }
 
     override func viewDidLayoutSubviews() {
@@ -71,6 +77,16 @@ class ImageViewerController: UIViewController {
             view.frame = self.scrollView.bounds
             view.frame.origin.x += self.scrollView.frame.width * CGFloat(index)
         }
+        pageControl.frame = .init(
+            x: (view.frame.width - 200) / 2,
+            y: view.frame.height - 50,
+            width: 200,
+            height: 30
+        )
+        
+        // configuration with initial values after initialize layout
+        pageControl.numberOfPages = pageViews.count
+        pageControl.currentPage = pageIndex
         scrollView.contentSize.width = CGFloat(pageViews.count) * scrollView.frame.width
         scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
         updateDynamicBackgroundImage()
@@ -95,6 +111,7 @@ extension ImageViewerController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
         updateDynamicBackgroundImage()
+        pageControl.currentPage = pageIndex
     }
 }
 
