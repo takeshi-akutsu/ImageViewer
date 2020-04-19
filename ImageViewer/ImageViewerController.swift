@@ -73,20 +73,28 @@ class ImageViewerController: UIViewController {
         }
         scrollView.contentSize.width = CGFloat(pageViews.count) * scrollView.frame.width
         scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
-        // MEMO: 画像取得処理が早く終わりすぎた時は、pageViewDidLoadImage()が呼ばれないのでこれを追加している
-        backgroundImageView.image = pageViews[pageIndex].imageView.image
+        updateDynamicBackgroundImage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         delegate?.dismiss(self, lastPageIndex: pageIndex)
     }
+    
+    private func updateDynamicBackgroundImage() {
+        /*
+         【PageViewでの画像読み込み】と【viewDidLayoutSubviews】の両方が終わったタイミングで、backgroundImageの更新をする必要がある。
+         PageViewでの画像読み込みは非同期で行われているため、どのくらいの速さで終わるかは不安定。
+         そのため、2箇所の両方でこの処理を呼び出すことで、両方が終わったタイミングで更新されることを保証している。
+         */
+        backgroundImageView.image = pageViews[pageIndex].imageView.image
+    }
 }
 
 extension ImageViewerController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
-        backgroundImageView.image = pageViews[pageIndex].imageView.image
+        updateDynamicBackgroundImage()
     }
 }
 
@@ -96,6 +104,6 @@ extension ImageViewerController: PageViewDelegate {
     }
     
     func pageViewDidLoadImage() {
-        backgroundImageView.image = pageViews[pageIndex].imageView.image
+        updateDynamicBackgroundImage()
     }
 }
