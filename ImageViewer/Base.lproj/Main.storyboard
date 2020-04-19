@@ -16,22 +16,28 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-gn-5A0">
-                                <rect key="frame" x="168" y="312.5" width="78.5" height="271"/>
+                                <rect key="frame" x="168" y="252.5" width="78.5" height="391.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUG-Uo-Cro">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9rW-tE-etd">
                                         <rect key="frame" x="18" y="0.0" width="42" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HUG-Uo-Cro">
+                                        <rect key="frame" x="18" y="120.5" width="42" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Index" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lDc-Wf-HfC">
-                                        <rect key="frame" x="0.0" y="120.5" width="78.5" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="241" width="78.5" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGk-wA-tOJ">
-                                        <rect key="frame" x="20" y="241" width="38" height="30"/>
+                                        <rect key="frame" x="20" y="361.5" width="38" height="30"/>
                                         <state key="normal" title="Show"/>
                                         <connections>
                                             <action selector="showImageViewer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YEt-MV-5mZ"/>
@@ -50,6 +56,7 @@
                     <connections>
                         <outlet property="lastIndexLabel" destination="lDc-Wf-HfC" id="N1G-jp-kTz"/>
                         <outlet property="startIndexLabel" destination="HUG-Uo-Cro" id="kQ3-q1-wIo"/>
+                        <outlet property="totalPageCountLabel" destination="9rW-tE-etd" id="zUE-9r-Dzu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

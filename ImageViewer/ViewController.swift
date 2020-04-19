@@ -12,6 +12,7 @@ func uninitialized<T>() -> T { fatalError() }
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var totalPageCountLabel: UILabel!
     @IBOutlet weak var startIndexLabel: UILabel!
     @IBOutlet weak var lastIndexLabel: UILabel!
     
@@ -27,8 +28,10 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        totalPageCountLabel.text = "全部で \(imageURLs.count) 枚の画像がある"
         startIndex = Int.random(in: 0..<imageURLs.count)
-        startIndexLabel.text = "initial page's gonna be \(startIndex)"
+        startIndexLabel.text = "最初に表示するのは \(startIndex + 1) ページ目"
+        lastIndexLabel.text = "最後に閲覧したのは ?? ページ目"
     }
     
     @IBAction func showImageViewer(_ sender: UIButton) {
@@ -40,6 +43,6 @@ class ViewController: UIViewController {
 
 extension ViewController: ImageViewerControllerDelegate {
     func dismiss(_ imageViewerController: ImageViewerController, lastPageIndex: Int) {
-        lastIndexLabel.text = "dismissed from \(lastPageIndex) page"
+        lastIndexLabel.text = "最後に閲覧したのは \(lastPageIndex + 1) ページ目"
     }
 }
