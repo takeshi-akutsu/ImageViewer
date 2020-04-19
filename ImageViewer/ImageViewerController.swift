@@ -64,6 +64,7 @@ class ImageViewerController: UIViewController {
         super.viewDidAppear(animated)
         // TODO: 非同期処理を絡める
         setPages(images)
+        scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
         backgroundImageView.image = images[pageIndex]
     }
 }

@@ -16,7 +16,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vc = ImageViewerController.init(images: images)
+        vc = ImageViewerController.init(images: images, pageIndex: 2)
         view.addSubview(vc.view)
         vc.view.fill(in: view)
     }
