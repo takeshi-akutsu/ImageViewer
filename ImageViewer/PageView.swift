@@ -38,7 +38,6 @@ final class PageView: UIScrollView {
         super.layoutSubviews()
         // Viewのinitialize時にimageViewのframeを設定する
         if imageView.frame == .zero, let imageSize = imageView.image?.size {
-            print(imageView.frame)
             let wrate = frame.width / imageSize.width
             let hrate = frame.height / imageSize.height
             let scale = min(wrate, hrate, 1)
@@ -65,16 +64,14 @@ extension PageView {
     }
     
     @objc func scrollViewDidDoubleTapped(_ sender: UITapGestureRecognizer) {
-        let pointInImageView = sender.location(in: imageView)
-        let newZoomScale = zoomScale > minimumZoomScale ? minimumZoomScale : maximumZoomScale
-        
-        let width = contentSize.width / newZoomScale
-        let height = contentSize.height / newZoomScale
-        let x = pointInImageView.x - (width / 2)
-        let y = pointInImageView.y - (height / 2)
-        
-        let rectToZoomTo: CGRect = .init(x: x, y: y, width: width, height: height)
-        zoom(to: rectToZoomTo, animated: true)
+        if zoomScale < maximumZoomScale { // zoom in
+            let tapped = sender.location(in: self)
+            let size: CGSize = .init(width: contentSize.width / maximumZoomScale, height: contentSize.height / maximumZoomScale)
+            let origin: CGPoint = .init(x: tapped.x - (size.width / 2), y: tapped.y - (size.height / 2))
+            zoom(to: .init(origin: origin, size: size), animated: true)
+        } else { // zoom out
+            setZoomScale(minimumZoomScale, animated: true)
+        }
     }
 }
 
