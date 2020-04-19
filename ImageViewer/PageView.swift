@@ -21,7 +21,14 @@ final class PageView: UIScrollView {
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
-    
+
+    private lazy var loadingIndicator: UIView = { [unowned self] in
+        let indicator = UIActivityIndicatorView()
+        indicator.style = .large
+        indicator.startAnimating()
+        return indicator
+    }()
+
     private lazy var doubleTapGestureRecognizer: UITapGestureRecognizer = { [unowned self] in
         let gestureRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(scrollViewDidDoubleTapped(_:)))
         gestureRecognizer.numberOfTapsRequired = 2
@@ -33,10 +40,12 @@ final class PageView: UIScrollView {
     init(imageURL: URL) {
         super.init(frame: .zero)
         addSubview(imageView)
+        addSubview(loadingIndicator)
         
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL) { [weak self] _ in
             self?.layoutImageViewIfNeeded()
+            self?.loadingIndicator.removeFromSuperview()
             self?.pageViewDelegate?.pageViewDidLoadImage()
         }
         
@@ -50,6 +59,7 @@ final class PageView: UIScrollView {
     override func layoutSubviews() {
         super.layoutSubviews()
         layoutImageViewIfNeeded()
+        loadingIndicator.center = .init(x: bounds.width / 2, y: bounds.height / 2)
     }
 
     required init?(coder: NSCoder) {
