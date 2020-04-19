@@ -16,7 +16,23 @@
 		56926D1624485097007D5669 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D1524485097007D5669 /* Utils.swift */; };
 		56926D18244850E8007D5669 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D17244850E8007D5669 /* PageView.swift */; };
 		56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A8981B244C04D500F9630A /* ImageViewerController.swift */; };
+		56A8981F244C4C5C00F9630A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; };
+		56A89820244C4C5C00F9630A /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		56A89821244C4C5C00F9630A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				56A89820244C4C5C00F9630A /* Kingfisher.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		56926CFE24484CCB007D5669 /* ImageViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -30,6 +46,7 @@
 		56926D1524485097007D5669 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		56926D17244850E8007D5669 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		56A8981B244C04D500F9630A /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
+		56A8981E244C4C5C00F9630A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56A8981F244C4C5C00F9630A /* Kingfisher.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -48,6 +66,7 @@
 			children = (
 				56926D0024484CCB007D5669 /* ImageViewer */,
 				56926CFF24484CCB007D5669 /* Products */,
+				56A8981D244C4C5C00F9630A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,6 +95,14 @@
 			path = ImageViewer;
 			sourceTree = "<group>";
 		};
+		56A8981D244C4C5C00F9630A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				56A8981E244C4C5C00F9630A /* Kingfisher.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,6 +113,7 @@
 				56926CFA24484CCB007D5669 /* Sources */,
 				56926CFB24484CCB007D5669 /* Frameworks */,
 				56926CFC24484CCB007D5669 /* Resources */,
+				56A89821244C4C5C00F9630A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -298,6 +326,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56B66KRS9M;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ImageViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -316,6 +348,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 56B66KRS9M;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ImageViewer/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
