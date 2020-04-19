@@ -16,18 +16,14 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        vc = ImageViewerController.init()
+        vc = ImageViewerController.init(images: images)
         view.addSubview(vc.view)
         vc.view.fill(in: view)
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        vc.configure([
-            UIImage.init(named: "sample")!,
-            UIImage.init(named: "sample2")!,
-            UIImage.init(named: "sample")!,
-        ])
-    }
 }
 
+private let images: [UIImage] = [
+    UIImage.init(named: "sample")!,
+    UIImage.init(named: "sample2")!,
+    UIImage.init(named: "sample")!,
+]
