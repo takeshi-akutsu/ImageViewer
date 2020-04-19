@@ -13,6 +13,9 @@
 		56926D0924484CCB007D5669 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56926D0724484CCB007D5669 /* Main.storyboard */; };
 		56926D0B24484CCC007D5669 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56926D0A24484CCC007D5669 /* Assets.xcassets */; };
 		56926D0E24484CCC007D5669 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 56926D0C24484CCC007D5669 /* LaunchScreen.storyboard */; };
+		56926D1624485097007D5669 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D1524485097007D5669 /* Utils.swift */; };
+		56926D18244850E8007D5669 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D17244850E8007D5669 /* PageView.swift */; };
+		56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A8981B244C04D500F9630A /* ImageViewerController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,9 @@
 		56926D0A24484CCC007D5669 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		56926D0D24484CCC007D5669 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		56926D0F24484CCC007D5669 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		56926D1524485097007D5669 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		56926D17244850E8007D5669 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
+		56A8981B244C04D500F9630A /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,9 @@
 				56926D0A24484CCC007D5669 /* Assets.xcassets */,
 				56926D0C24484CCC007D5669 /* LaunchScreen.storyboard */,
 				56926D0F24484CCC007D5669 /* Info.plist */,
+				56926D1524485097007D5669 /* Utils.swift */,
+				56926D17244850E8007D5669 /* PageView.swift */,
+				56A8981B244C04D500F9630A /* ImageViewerController.swift */,
 			);
 			path = ImageViewer;
 			sourceTree = "<group>";
@@ -138,9 +147,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				56926D18244850E8007D5669 /* PageView.swift in Sources */,
 				56926D0624484CCB007D5669 /* ViewController.swift in Sources */,
 				56926D0224484CCB007D5669 /* AppDelegate.swift in Sources */,
 				56926D0424484CCB007D5669 /* SceneDelegate.swift in Sources */,
+				56926D1624485097007D5669 /* Utils.swift in Sources */,
+				56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

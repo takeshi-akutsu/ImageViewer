@@ -8,13 +8,26 @@
 
 import UIKit
 
+func uninitialized<T>() -> T { fatalError() }
+
 class ViewController: UIViewController {
+    
+    lazy var vc: ImageViewerController = uninitialized()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        vc = ImageViewerController.init()
+        view.addSubview(vc.view)
+        vc.view.fill(in: view)
     }
-
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        vc.configure([
+            UIImage.init(named: "sample")!,
+            UIImage.init(named: "sample2")!,
+            UIImage.init(named: "sample")!,
+        ])
+    }
 }
 
