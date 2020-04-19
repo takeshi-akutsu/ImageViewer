@@ -72,6 +72,7 @@ extension ImageViewerController {
     private func setPages(_ images: [UIImage]) {
         images.enumerated().forEach { [weak self] index, image in
             let pageView = PageView(image: image)
+            pageView.pageViewDelegate = self
             pageView.frame = scrollView.bounds
             pageView.frame.origin.x += scrollView.frame.width * CGFloat(index)
             self?.scrollView.addSubview(pageView)
@@ -84,5 +85,11 @@ extension ImageViewerController {
 extension ImageViewerController: UIScrollViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         pageIndex = Int(scrollView.contentOffset.x / scrollView.frame.size.width)
+    }
+}
+
+extension ImageViewerController: PageViewDelegate {
+    func pageViewStatusDidChanged(_ status: PageView.Status) {
+        scrollView.isScrollEnabled = (status == .normal)
     }
 }
