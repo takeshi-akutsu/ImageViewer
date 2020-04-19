@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol ImageViewerControllerDelegate: class {
+    func dismiss(_ imageViewerController: ImageViewerController, lastPageIndex: Int)
+}
+
 class ImageViewerController: UIViewController {
 
     lazy var scrollView: UIScrollView = { [unowned self] in
@@ -34,6 +38,7 @@ class ImageViewerController: UIViewController {
     private var pageIndex: Int
     private let imageURLs: [URL]
     private var pageViews: [PageView] = []
+    weak var delegate: ImageViewerControllerDelegate?
 
     init(imageURLs: [URL], pageIndex: Int = 0) {
         self.pageIndex = pageIndex
@@ -70,6 +75,11 @@ class ImageViewerController: UIViewController {
         scrollView.setContentOffset(.init(x: scrollView.bounds.width * CGFloat(pageIndex), y: 0), animated: false)
         // MEMO: 画像取得処理が早く終わりすぎた時は、pageViewDidLoadImage()が呼ばれないのでこれを追加している
         backgroundImageView.image = pageViews[pageIndex].imageView.image
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        delegate?.dismiss(self, lastPageIndex: pageIndex)
     }
 }
 

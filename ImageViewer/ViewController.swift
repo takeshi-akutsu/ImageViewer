@@ -33,6 +33,13 @@ class ViewController: UIViewController {
     
     @IBAction func showImageViewer(_ sender: UIButton) {
         let vc = ImageViewerController.init(imageURLs: imageURLs, pageIndex: startIndex)
+        vc.delegate = self
         present(vc, animated: true)
+    }
+}
+
+extension ViewController: ImageViewerControllerDelegate {
+    func dismiss(_ imageViewerController: ImageViewerController, lastPageIndex: Int) {
+        lastIndexLabel.text = "dismissed from \(lastPageIndex) page"
     }
 }
