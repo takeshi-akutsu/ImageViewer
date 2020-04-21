@@ -75,7 +75,7 @@ class ImageViewerController: UIViewController {
         backgroundImageView.frame = view.bounds
         pageViews.enumerated().forEach { [unowned self] index, view in
             view.frame = self.scrollView.bounds
-            view.frame.origin.x += self.scrollView.frame.width * CGFloat(index)
+            view.frame.origin.x = self.scrollView.frame.width * CGFloat(index)
         }
         pageControl.frame = .init(
             x: (view.frame.width - 200) / 2,
