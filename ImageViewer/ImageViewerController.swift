@@ -58,6 +58,8 @@ class ImageViewerController: UIViewController {
         self.pageIndex = pageIndex
         self.imageURLs = imageURLs
         super.init(nibName: nil, bundle: nil)
+        modalPresentationStyle = .fullScreen
+        transitioningDelegate = self
     }
 
     required init?(coder: NSCoder) {
@@ -137,5 +139,17 @@ extension ImageViewerController: PageViewDelegate {
     
     func pageViewDidLoadImage() {
         updateDynamicBackgroundImage()
+    }
+}
+
+// MARK: CustomTransition
+extension ImageViewerController: UIViewControllerTransitioningDelegate {
+
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CrossDissolvePresentationAnimator.init(context: .present)
+    }
+
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CrossDissolvePresentationAnimator.init(context: .dismiss)
     }
 }

@@ -18,6 +18,7 @@
 		56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A8981B244C04D500F9630A /* ImageViewerController.swift */; };
 		56A8981F244C4C5C00F9630A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; };
 		56A89820244C4C5C00F9630A /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		56E202E7244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +48,7 @@
 		56926D17244850E8007D5669 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		56A8981B244C04D500F9630A /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
 		56A8981E244C4C5C00F9630A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
+		56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossDissolvePresentationAnimator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				56926D1524485097007D5669 /* Utils.swift */,
 				56926D17244850E8007D5669 /* PageView.swift */,
 				56A8981B244C04D500F9630A /* ImageViewerController.swift */,
+				56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */,
 			);
 			path = ImageViewer;
 			sourceTree = "<group>";
@@ -180,6 +183,7 @@
 				56926D0224484CCB007D5669 /* AppDelegate.swift in Sources */,
 				56926D0424484CCB007D5669 /* SceneDelegate.swift in Sources */,
 				56926D1624485097007D5669 /* Utils.swift in Sources */,
+				56E202E7244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift in Sources */,
 				56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
