@@ -8,6 +8,10 @@
 
 import UIKit
 
+/*
+ contextに関わらず同じanimationを使っているのでcontextなどは不要だったが、
+ 今後の参考になるように分けて書いている。
+*/
 class CrossDissolvePresentationAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     enum Context {
@@ -16,15 +20,17 @@ class CrossDissolvePresentationAnimator: NSObject, UIViewControllerAnimatedTrans
     }
 
     private lazy var context: Context = uninitialized()
+    private lazy var transitionDuration: TimeInterval = uninitialized()
     
-    init(context: Context) {
+    init(context: Context, duration: TimeInterval) {
         super.init()
         self.context = context
+        self.transitionDuration = duration
     }
     
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.25
+        return transitionDuration
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -42,10 +48,14 @@ class CrossDissolvePresentationAnimator: NSObject, UIViewControllerAnimatedTrans
         
         transitionContext.containerView.insertSubview(toView, belowSubview: fromView) // fromViewは最初から追加されている
         
-        UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseInOut, animations: {
-            fromView.alpha = 0
-        }) { complete in
-            transitionContext.completeTransition(complete)
+        UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                fromView.alpha = 0
+        }) { completion in
+            transitionContext.completeTransition(completion)
             fromView.alpha = 1
         }
     }
@@ -56,10 +66,14 @@ class CrossDissolvePresentationAnimator: NSObject, UIViewControllerAnimatedTrans
         
         transitionContext.containerView.insertSubview(toView, belowSubview: fromView) // fromViewは最初から追加されている
         
-        UIView.animate(withDuration: 0.1, delay: 0, options: .curveEaseInOut, animations: {
-            fromView.alpha = 0
-        }) { complete in
-            transitionContext.completeTransition(complete)
+        UIView.animate(
+            withDuration: transitionDuration(using: transitionContext),
+            delay: 0,
+            options: .curveEaseInOut,
+            animations: {
+                fromView.alpha = 0
+        }) { completion in
+            transitionContext.completeTransition(completion)
             fromView.alpha = 1
         }
     }
