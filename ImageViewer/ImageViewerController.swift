@@ -39,6 +39,15 @@ class ImageViewerController: UIViewController {
         let pageControl = UIPageControl()
         return pageControl
     }()
+    
+    private lazy var dismissButton: UIButton = { [unowned self] in
+        let button = UIButton()
+        button.setTitle("閉じる", for: .normal)
+        button.titleLabel?.font = UIFont.init(name: "HiraginoSans-W6", size: 15)
+        button.setTitleColor(.darkText, for: .normal)
+        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+        return button
+    }()
 
     private var pageIndex: Int
     private let imageURLs: [URL]
@@ -66,6 +75,7 @@ class ImageViewerController: UIViewController {
             self?.pageViews.append(pageView)
         }
         view.addSubview(pageControl)
+        view.addSubview(dismissButton)
     }
 
     override func viewDidLayoutSubviews() {
@@ -83,6 +93,7 @@ class ImageViewerController: UIViewController {
             width: 200,
             height: 30
         )
+        dismissButton.frame = .init(x: 10, y: 50, width: 100, height: 30)
         
         // configuration with initial values after initialize layout
         pageControl.numberOfPages = pageViews.count
@@ -104,6 +115,10 @@ class ImageViewerController: UIViewController {
          そのため、2箇所の両方でこの処理を呼び出すことで、両方が終わったタイミングで更新されることを保証している。
          */
         backgroundImageView.image = pageViews[pageIndex].imageView.image
+    }
+    
+    @objc func dismissAction() {
+        dismiss(animated: true)
     }
 }
 
