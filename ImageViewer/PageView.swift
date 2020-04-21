@@ -42,7 +42,6 @@ final class PageView: UIScrollView {
         addSubview(imageView)
         addSubview(loadingIndicator)
         
-        imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL) { [weak self] _ in
             self?.layoutImageViewIfNeeded()
             self?.loadingIndicator.removeFromSuperview()
