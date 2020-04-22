@@ -145,11 +145,12 @@ extension ImageViewerController: PageViewDelegate {
 // MARK: CustomTransition
 extension ImageViewerController: UIViewControllerTransitioningDelegate {
 
+    // custom transition
     func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CrossDissolvePresentationAnimator.init(context: .present, duration: 0.3)
+        return Animator.init(context: .present)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return CrossDissolvePresentationAnimator.init(context: .dismiss, duration: 0.2)
+        return Animator.init(context: .dismiss)
     }
 }
