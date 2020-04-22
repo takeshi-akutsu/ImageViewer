@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5690F3A0244EB90D00A8B3BF /* InteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5690F39F244EB90D00A8B3BF /* InteractiveTransition.swift */; };
 		56926D0224484CCB007D5669 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D0124484CCB007D5669 /* AppDelegate.swift */; };
 		56926D0424484CCB007D5669 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D0324484CCB007D5669 /* SceneDelegate.swift */; };
 		56926D0624484CCB007D5669 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56926D0524484CCB007D5669 /* ViewController.swift */; };
@@ -18,7 +19,7 @@
 		56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A8981B244C04D500F9630A /* ImageViewerController.swift */; };
 		56A8981F244C4C5C00F9630A /* Kingfisher.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; };
 		56A89820244C4C5C00F9630A /* Kingfisher.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 56A8981E244C4C5C00F9630A /* Kingfisher.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		56E202E7244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */; };
+		56E202E7244E9EEF005DC52E /* Animator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E202E6244E9EEF005DC52E /* Animator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -36,6 +37,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		5690F39F244EB90D00A8B3BF /* InteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTransition.swift; sourceTree = "<group>"; };
 		56926CFE24484CCB007D5669 /* ImageViewer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImageViewer.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56926D0124484CCB007D5669 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		56926D0324484CCB007D5669 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +50,7 @@
 		56926D17244850E8007D5669 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		56A8981B244C04D500F9630A /* ImageViewerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewerController.swift; sourceTree = "<group>"; };
 		56A8981E244C4C5C00F9630A /* Kingfisher.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Kingfisher.framework; path = Carthage/Build/iOS/Kingfisher.framework; sourceTree = "<group>"; };
-		56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CrossDissolvePresentationAnimator.swift; sourceTree = "<group>"; };
+		56E202E6244E9EEF005DC52E /* Animator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +95,8 @@
 				56926D1524485097007D5669 /* Utils.swift */,
 				56926D17244850E8007D5669 /* PageView.swift */,
 				56A8981B244C04D500F9630A /* ImageViewerController.swift */,
-				56E202E6244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift */,
+				56E202E6244E9EEF005DC52E /* Animator.swift */,
+				5690F39F244EB90D00A8B3BF /* InteractiveTransition.swift */,
 			);
 			path = ImageViewer;
 			sourceTree = "<group>";
@@ -183,8 +186,9 @@
 				56926D0224484CCB007D5669 /* AppDelegate.swift in Sources */,
 				56926D0424484CCB007D5669 /* SceneDelegate.swift in Sources */,
 				56926D1624485097007D5669 /* Utils.swift in Sources */,
-				56E202E7244E9EEF005DC52E /* CrossDissolvePresentationAnimator.swift in Sources */,
+				56E202E7244E9EEF005DC52E /* Animator.swift in Sources */,
 				56A8981C244C04D500F9630A /* ImageViewerController.swift in Sources */,
+				5690F3A0244EB90D00A8B3BF /* InteractiveTransition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

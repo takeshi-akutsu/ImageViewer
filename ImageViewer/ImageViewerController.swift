@@ -51,8 +51,9 @@ class ImageViewerController: UIViewController {
 
     private var pageIndex: Int
     private let imageURLs: [URL]
-    private var pageViews: [PageView] = []
+    private(set) var pageViews: [PageView] = []
     weak var delegate: ImageViewerControllerDelegate?
+    private lazy var interactiveTransition: InteractiveTransition = uninitialized()
 
     init(imageURLs: [URL], pageIndex: Int = 0) {
         self.pageIndex = pageIndex
@@ -78,6 +79,7 @@ class ImageViewerController: UIViewController {
         }
         view.addSubview(pageControl)
         view.addSubview(dismissButton)
+        interactiveTransition = .init(target: self)
     }
 
     override func viewDidLayoutSubviews() {
@@ -152,5 +154,15 @@ extension ImageViewerController: UIViewControllerTransitioningDelegate {
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return Animator.init(context: .dismiss)
+    }
+    
+    // interactiveなtransition
+    func interactionControllerForPresentation(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        return nil
+    }
+    
+    func interactionControllerForDismissal(using animator: UIViewControllerAnimatedTransitioning) -> UIViewControllerInteractiveTransitioning? {
+        guard interactiveTransition.isTransitioning else { return nil }
+        return interactiveTransition
     }
 }

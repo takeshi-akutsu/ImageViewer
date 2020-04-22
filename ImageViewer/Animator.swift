@@ -39,8 +39,10 @@ class Animator: NSObject, UIViewControllerAnimatedTransitioning {
             options: .curveEaseInOut,
             animations: {
                 fromView.alpha = 0
-        }) { completion in
-            transitionContext.completeTransition(completion)
+        }) { _ in
+            transitionContext.transitionWasCancelled
+                ? transitionContext.completeTransition(false)
+                : transitionContext.completeTransition(true)
             fromView.alpha = 1
         }
     }
